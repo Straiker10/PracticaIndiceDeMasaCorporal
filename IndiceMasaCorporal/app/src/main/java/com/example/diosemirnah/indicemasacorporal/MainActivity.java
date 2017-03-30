@@ -76,10 +76,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-
+    //En este metodo se ejecutan los eventos de los dos botones colocados
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
+            case R.id.salir:
+                System.exit(0);
+                break;
+            case R.id.calcular:
+                if (peso.getText().toString().trim().length() == 0) {
+                    peso.requestFocus();
+
+                    Toast.makeText(MainActivity.this,
+                            "El campo peso esta vacio", Toast.LENGTH_SHORT)
+                            .show();
+                } else if (altura.getText().toString().trim().length() == 0) {
+                    altura.requestFocus();
+
+                    Toast.makeText(MainActivity.this,
+                            "El campo altura esta vacio",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    CalcularIMC();
+                    break;
+                }
+        }
     }
 }
