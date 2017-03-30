@@ -35,17 +35,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Este metodo sirve para calcular el IMC segun los datos ingresados
     public void CalcularIMC(){
 
-        float kg = Float.parseFloat(peso.getText().toString());
-        float cm = Float.parseFloat(altura.getText().toString());
+        CalcularIMC calcu = new CalcularIMC();
+        float kg=Float.parseFloat(peso.getText().toString());
+        float cm=Float.parseFloat(altura.getText().toString());
+        calcu.calcular(kg,cm);
         float m = (cm / 100);
-        float bmi = (kg / (m * m));
+        float bmi = (kg / (m * m));//Formula para obtener el IMC
 
+        //Empieza las codiciones para determinar la clasificaciòn e muestra un mensaje del IMC con la clasificacion obtenid por rangos
+        //Rango menor a 18.5
         if (bmi < 18.5) {
             Toast.makeText(MainActivity.this,
                     "Tu IMC es " + bmi + "\n" + "Estas delgado",
                     Toast.LENGTH_SHORT).show();
             limpiar();
         } else {
+            //Rango menor a 24.9
             if (bmi < 24.9) {
                 Toast.makeText(
                         MainActivity.this,
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.LENGTH_SHORT).show();
                 limpiar();
             } else {
+                //rango menor a 29.9
                 if (bmi < 29.9) {
                     Toast.makeText(
                             MainActivity.this,
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     limpiar();
 
                 } else {
+                    //rango mayor a 30
                     if (bmi > 30) {
                         Toast.makeText(
                                 MainActivity.this,
@@ -81,23 +88,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.salir:
+            case R.id.salir://hace la llamada al boton salir
                 System.exit(0);
                 break;
-            case R.id.calcular:
+            case R.id.calcular://hace la llamada al boton calcular
+                //Este if valida que los campos no sean vacios
                 if (peso.getText().toString().trim().length() == 0) {
                     peso.requestFocus();
-
+                    //si el campo esta vacio muestra una mensaje de que el campor esta vacio
                     Toast.makeText(MainActivity.this,
                             "El campo peso esta vacio", Toast.LENGTH_SHORT)
                             .show();
                 } else if (altura.getText().toString().trim().length() == 0) {
                     altura.requestFocus();
-
+                    //si el campo esta vacio muestra una mensaje de que el campor esta vacio
                     Toast.makeText(MainActivity.this,
                             "El campo altura esta vacio",
                             Toast.LENGTH_SHORT).show();
                 } else {
+                    //si no esta vacio hace la operaciòn
                     CalcularIMC();
                     break;
                 }

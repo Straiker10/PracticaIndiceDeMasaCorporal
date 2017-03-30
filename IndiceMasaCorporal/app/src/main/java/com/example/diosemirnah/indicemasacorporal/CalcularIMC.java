@@ -8,9 +8,7 @@ import android.widget.Toast;
 
 public class CalcularIMC extends MainActivity {
 
-    public double calcular(float kg,float cm) {
-
-
+    public float calcular(float kg,float cm) {
         float m = (cm / 100);
         float bmi = (kg / (m * m));
         return bmi;
