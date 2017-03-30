@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (bmi < 18.5) {
             Toast.makeText(MainActivity.this,
-                    "Tu IMC es " + bmi + "\n" + "EstÃ¡s delgado",
+                    "Tu IMC es " + bmi + "\n" + "Estas delgado",
                     Toast.LENGTH_SHORT).show();
             limpiar();
         } else {
